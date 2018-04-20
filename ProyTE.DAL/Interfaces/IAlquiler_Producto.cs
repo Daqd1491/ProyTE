@@ -19,6 +19,8 @@ namespace ProyTE.DAL.Interfaces
         void ActualizarAlquiler_Producto(TbAlquiler_Producto alquilerProducto);
         // Delete
         void EliminarAlquiler_Producto(int idAlquiler_Producto);
-        
+        // Seleccionar por Categoria
+        /*List<TbAlquiler_Producto> ListarProductosPorCategoria(int idCategoria);
+        List<ViewProductos> ListarNuevosProductos();*/
     }
 }
