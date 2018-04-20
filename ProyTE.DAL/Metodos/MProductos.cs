@@ -15,6 +15,7 @@ namespace ProyTE.DAL.Metodos
         public void ActualizarProducto(TbProductos producto)
         {
             _db.Update(producto);
+            _db.Close();
         }
 
         public TbProductos BuscarProducto(int idProducto)
@@ -25,11 +26,13 @@ namespace ProyTE.DAL.Metodos
         public void EliminarProducto(int idProducto)
         {
             _db.Delete<TbProductos>(x => x.Id_Producto == idProducto);
+            _db.Close();
         }
 
         public void InsertarProducto(TbProductos producto)
         {
             _db.Insert(producto);
+            _db.Close();
         }
 
         public List<TbProductos> ListarProductos()

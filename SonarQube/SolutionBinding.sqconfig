@@ -1,0 +1,11 @@
+{
+  "ServerUri": "https://proyte.azurewebsites.net",
+  "Organization": null,
+  "ProjectKey": "TE",
+  "Profiles": {
+    "CSharp": {
+      "ProfileKey": "AWLf8gMzb58hNAoNTRQ6",
+      "ProfileTimestamp": "2018-04-19T16:06:42-06:00"
+    }
+  }
+}

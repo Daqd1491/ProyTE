@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<RuleSet Name="SonarQube - ProyTE Sonar way" Description="This rule set was automatically generated from SonarQube.&#xD;&#xA;https://proyte.azurewebsites.net/profiles/show?key=AWLf8gMzb58hNAoNTRQ6" ToolsVersion="14.0">
+  <Rules AnalyzerId="SonarAnalyzer.CSharp" RuleNamespace="SonarAnalyzer.CSharp">
+    <Rule Id="S101" Action="None" />
+    <Rule Id="S1135" Action="Warning" />
+    <Rule Id="S4261" Action="None" />
+  </Rules>
+</RuleSet>
