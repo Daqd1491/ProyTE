@@ -8,8 +8,8 @@ namespace ProyTE.BLL.Metodos
 {
     public class MBase
     {
-        public ProyTE.DAL.Interfaces.IAlquiler_Producto alqProd;
-        public ProyTE.DAL.Interfaces.IAlquileres alqui;
+        protected ProyTE.DAL.Interfaces.IAlquiler_Producto alqProd;
+        protected ProyTE.DAL.Interfaces.IAlquileres alqui;
         public ProyTE.DAL.Interfaces.ICategorias cat;
         public ProyTE.DAL.Interfaces.IHistorial_Medidas histMed;
         public ProyTE.DAL.Interfaces.IPermisos permi;
