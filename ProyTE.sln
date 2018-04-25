@@ -9,7 +9,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProyTE.DAL", "ProyTE.DAL\Pr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProyTE.BLL", "ProyTE.BLL\ProyTE.BLL.csproj", "{DE54BC78-F986-4867-848A-6E69EC04D53B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProyTE.UI", "ProyTE.UI\ProyTE.UI.csproj", "{CC811B02-6693-45F0-AB00-25EBBE1BFEB3}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SonarQube", "SonarQube", "{3EAA3ADA-33AF-4EE9-9A90-3CF4A2A66DDE}"
+	ProjectSection(SolutionItems) = preProject
+		SonarQube\SolutionBinding.sqconfig = SonarQube\SolutionBinding.sqconfig
+		SonarQube\TECSharp.ruleset = SonarQube\TECSharp.ruleset
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,10 +33,6 @@ Global
 		{DE54BC78-F986-4867-848A-6E69EC04D53B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DE54BC78-F986-4867-848A-6E69EC04D53B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DE54BC78-F986-4867-848A-6E69EC04D53B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{CC811B02-6693-45F0-AB00-25EBBE1BFEB3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{CC811B02-6693-45F0-AB00-25EBBE1BFEB3}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{CC811B02-6693-45F0-AB00-25EBBE1BFEB3}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{CC811B02-6693-45F0-AB00-25EBBE1BFEB3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
