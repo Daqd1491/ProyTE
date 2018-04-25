@@ -14,27 +14,39 @@ namespace ProyTE.DAL.Metodos
     {
         public void ActualizarUsuario_Tarjeta(TbUsuario_Tarjeta usuarioTarjeta)
         {
+            _db = _conexion.Open();
             _db.Update(usuarioTarjeta);
+            _db.Close();
         }
 
         public TbUsuario_Tarjeta BuscarUsuario_Tarjeta(int idUsuario_Tarjeta)
         {
-            return _db.Select<TbUsuario_Tarjeta>(x => x.Id_Usuario_Tarjeta == idUsuario_Tarjeta).FirstOrDefault();
+            _db = _conexion.Open();
+            var select = _db.Select<TbUsuario_Tarjeta>(x => x.Id_Usuario_Tarjeta == idUsuario_Tarjeta).FirstOrDefault();
+            _db.Close();
+            return select;
         }
 
         public void EliminarUsuario_Tarjeta(int idUsuario_Tarjeta)
         {
+            _db = _conexion.Open();
             _db.Delete<TbUsuario_Tarjeta>(x => x.Id_Usuario_Tarjeta == idUsuario_Tarjeta);
+            _db.Close();
         }
 
         public void InsertarUsuario_Tarjeta(TbUsuario_Tarjeta usuarioTarjeta)
         {
+            _db = _conexion.Open();
             _db.Insert(usuarioTarjeta);
+            _db.Close();
         }
 
         public List<TbUsuario_Tarjeta> ListarUsuario_Tarjetas()
         {
-            return _db.Select<TbUsuario_Tarjeta>();
+            _db = _conexion.Open();
+            var select = _db.Select<TbUsuario_Tarjeta>();
+            _db.Close();
+            return select;
         }
     }
 }

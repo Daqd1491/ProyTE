@@ -21,6 +21,7 @@ namespace ProyTE.BLL.Metodos
         public ProyTE.DAL.Interfaces.ITipo_Tarjetas tipTarj;
         public ProyTE.DAL.Interfaces.IUsuario_Tarjeta usuTarj;
         public ProyTE.DAL.Interfaces.IUsuarios usu;
+        public ProyTE.DAL.Interfaces.ICuenta cuent;
 
         public MBase()
         {
@@ -37,6 +38,7 @@ namespace ProyTE.BLL.Metodos
             tipTarj = new ProyTE.DAL.Metodos.MTipo_Tarjetas();
             usuTarj = new ProyTE.DAL.Metodos.MUsuario_Tarjeta();
             usu = new ProyTE.DAL.Metodos.MUsuarios();
+            cuent = new ProyTE.DAL.Metodos.MCuenta();
         }
 
     }

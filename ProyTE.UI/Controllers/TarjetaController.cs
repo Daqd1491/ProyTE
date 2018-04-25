@@ -23,15 +23,29 @@ namespace ProyTE.UI.Controllers
         // GET: Tarjeta
         public ActionResult Index()
         {
-            var lista = tar.ListarTarjetas();
-            var tarjetas = Mapper.Map<List<Models.TbTarjetas>>(lista);
-            return View(tarjetas);
+            if (Session["UserEmail"] != null)
+            {
+                var lista = tar.ListarTarjetas();
+                var tarjetas = Mapper.Map<List<Models.TbTarjetas>>(lista);
+                return View(tarjetas);
+            }
+            else
+            {
+                return RedirectToAction("Login", "Login");
+            }
         }
 
         //vista insert
         public ActionResult Create()
         {
-            return View();
+            if (Session["UserEmail"] != null)
+            {
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Login", "Login");
+            }
         }
 
         //insert
@@ -50,17 +64,31 @@ namespace ProyTE.UI.Controllers
         //select por id
         public ActionResult Details(int id)
         {
-            var tarjeta = tar.BuscarTarjeta(id);
-            var mostrar = Mapper.Map<Models.TbTarjetas>(tarjeta);
-            return View(mostrar);
+            if (Session["UserEmail"] != null)
+            {
+                var tarjeta = tar.BuscarTarjeta(id);
+                var mostrar = Mapper.Map<Models.TbTarjetas>(tarjeta);
+                return View(mostrar);
+            }
+            else
+            {
+                return RedirectToAction("Login", "Login");
+            }
         }
 
         //vista update
         public ActionResult Edit(int id)
         {
-            var tarjeta = tar.BuscarTarjeta(id);
-            var mostrar = Mapper.Map<Models.TbTarjetas>(tarjeta);
-            return View(mostrar);
+            if (Session["UserEmail"] != null)
+            {
+                var tarjeta = tar.BuscarTarjeta(id);
+                var mostrar = Mapper.Map<Models.TbTarjetas>(tarjeta);
+                return View(mostrar);
+            }
+            else
+            {
+                return RedirectToAction("Login", "Login");
+            }
         }
 
         //update
@@ -79,8 +107,15 @@ namespace ProyTE.UI.Controllers
         //delete
         public ActionResult Delete(int id)
         {
-            tar.EliminarTarjeta(id);
-            return RedirectToAction("Index");
+            if (Session["UserEmail"] != null)
+            {
+                tar.EliminarTarjeta(id);
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                return RedirectToAction("Login", "Login");
+            }
         }
     }
 }

@@ -15,9 +15,7 @@ namespace ProyTE.DAL.Metodos
 
         public MBase()
         {
-            _conexion = new OrmLiteConnectionFactory(BD.Default.conexion,
-               SqlServerDialect.Provider);
-            _db = _conexion.Open();
+            _conexion = new OrmLiteConnectionFactory(BD.Default.conexion, SqlServerDialect.Provider);
         }
     }
 }

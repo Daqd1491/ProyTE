@@ -23,15 +23,29 @@ namespace ProyTE.UI.Controllers
         // GET: Prenda
         public ActionResult Index()
         {
-            var lista = pren.ListarPrendas();
-            var prendas = Mapper.Map<List<Models.TbPrendas>>(lista);
-            return View(prendas);
+            if (Session["UserEmail"] != null)
+            {
+                var lista = pren.ListarPrendas();
+                var prendas = Mapper.Map<List<Models.TbPrendas>>(lista);
+                return View(prendas);
+            }
+            else
+            {
+                return RedirectToAction("Login", "Login");
+            }
         }
 
         //vista insert
         public ActionResult Create()
         {
-            return View();
+            if (Session["UserEmail"] != null)
+            {
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Login", "Login");
+            }
         }
 
         //insert
@@ -50,17 +64,31 @@ namespace ProyTE.UI.Controllers
         //select por id
         public ActionResult Details(int id)
         {
-            var prenda = pren.BuscarPrenda(id);
-            var mostrar = Mapper.Map<Models.TbPrendas>(prenda);
-            return View(mostrar);
+            if (Session["UserEmail"] != null)
+            {
+                var prenda = pren.BuscarPrenda(id);
+                var mostrar = Mapper.Map<Models.TbPrendas>(prenda);
+                return View(mostrar);
+            }
+            else
+            {
+                return RedirectToAction("Login", "Login");
+            }
         }
 
         //vista update
         public ActionResult Edit(int id)
         {
-            var prenda = pren.BuscarPrenda(id);
-            var mostrar = Mapper.Map<Models.TbPrendas>(prenda);
-            return View(mostrar);
+            if (Session["UserEmail"] != null)
+            {
+                var prenda = pren.BuscarPrenda(id);
+                var mostrar = Mapper.Map<Models.TbPrendas>(prenda);
+                return View(mostrar);
+            }
+            else
+            {
+                return RedirectToAction("Login", "Login");
+            }
         }
 
         //update
@@ -79,8 +107,15 @@ namespace ProyTE.UI.Controllers
         //delete
         public ActionResult Delete(int id)
         {
-            pren.EliminarPrenda(id);
-            return RedirectToAction("Index");
+            if (Session["UserEmail"] != null)
+            {
+                pren.EliminarPrenda(id);
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                return RedirectToAction("Login", "Login");
+            }
         }
     }
 }

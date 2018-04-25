@@ -14,27 +14,39 @@ namespace ProyTE.DAL.Metodos
     {
         public void ActualizarAlquiler(TbAlquileres alquiler)
         {
+            _db = _conexion.Open();
             _db.Update(alquiler);
+            _db.Close();
         }
 
         public TbAlquileres BuscarAlquiler(int idAlquiler)
         {
-            return _db.Select<TbAlquileres>(x => x.Id_Alquiler == idAlquiler).FirstOrDefault();
+            _db = _conexion.Open();
+            var select = _db.Select<TbAlquileres>(x => x.Id_Alquiler == idAlquiler).FirstOrDefault();
+            _db.Close();
+            return select;
         }
 
         public void EliminarAlquiler(int idAlquiler)
         {
+            _db = _conexion.Open();
             _db.Delete<TbAlquileres>(x => x.Id_Alquiler == idAlquiler);
+            _db.Close();
         }
 
         public void InsertarAlquiler(TbAlquileres alquiler)
         {
+            _db = _conexion.Open();
             _db.Insert(alquiler);
+            _db.Close();
         }
 
         public List<TbAlquileres> ListarAlquileres()
         {
-            return _db.Select<TbAlquileres>();
+            _db = _conexion.Open();
+            var select = _db.Select<TbAlquileres>();
+            _db.Close();
+            return select;
         }
     }
 }

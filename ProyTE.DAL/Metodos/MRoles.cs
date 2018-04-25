@@ -14,27 +14,39 @@ namespace ProyTE.DAL.Metodos
     {
         public void ActualizarRol(TbRoles rol)
         {
+            _db = _conexion.Open();
             _db.Update(rol);
+            _db.Close();
         }
 
         public TbRoles BuscarRol(int idRol)
         {
-            return _db.Select<TbRoles>(x => x.Id_Rol == idRol).FirstOrDefault();
+            _db = _conexion.Open();
+            var select = _db.Select<TbRoles>(x => x.Id_Rol == idRol).FirstOrDefault();
+            _db.Close();
+            return select;
         }
 
         public void EliminarRol(int idRol)
         {
+            _db = _conexion.Open();
             _db.Delete<TbRoles>(x => x.Id_Rol == idRol);
+            _db.Close();
         }
 
         public void InsertarRol(TbRoles rol)
         {
+            _db = _conexion.Open();
             _db.Insert(rol);
+            _db.Close();
         }
 
         public List<TbRoles> ListarRoles()
         {
-            return _db.Select<TbRoles>();
+            _db = _conexion.Open();
+            var select = _db.Select<TbRoles>();
+            _db.Close();
+            return select;
         }
     }
 }

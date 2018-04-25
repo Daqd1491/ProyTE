@@ -43,6 +43,7 @@
     <Compile Include="Interfaces\IAlquileres.cs" />
     <Compile Include="Interfaces\IAlquiler_Producto.cs" />
     <Compile Include="Interfaces\ICategorias.cs" />
+    <Compile Include="Interfaces\ICuenta.cs" />
     <Compile Include="Interfaces\IHistorial_Medidas.cs" />
     <Compile Include="Interfaces\IPermisos.cs" />
     <Compile Include="Interfaces\IPrendas.cs" />
@@ -57,6 +58,7 @@
     <Compile Include="Metodos\MAlquiler_Producto.cs" />
     <Compile Include="Metodos\MBase.cs" />
     <Compile Include="Metodos\MCategorias.cs" />
+    <Compile Include="Metodos\MCuenta.cs" />
     <Compile Include="Metodos\MHistorial_Medidas.cs" />
     <Compile Include="Metodos\MPermisos.cs" />
     <Compile Include="Metodos\MPrendas.cs" />
@@ -68,6 +70,7 @@
     <Compile Include="Metodos\MUsuarios.cs" />
     <Compile Include="Metodos\MUsuario_Tarjeta.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utilidades.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

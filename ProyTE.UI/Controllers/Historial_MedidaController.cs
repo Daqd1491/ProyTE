@@ -23,15 +23,29 @@ namespace ProyTE.UI.Controllers
         // GET: Historial_Medidas
         public ActionResult Index()
         {
-            var lista = hist.ListarHistorial_Medidas();
-            var historialm = Mapper.Map<List<Models.TbHistorial_Medidas>>(lista);
-            return View(historialm);
+            if (Session["UserEmail"] != null)
+            {
+                var lista = hist.ListarHistorial_Medidas();
+                var historialm = Mapper.Map<List<Models.TbHistorial_Medidas>>(lista);
+                return View(historialm);
+            }
+            else
+            {
+                return RedirectToAction("Login", "Login");
+            }
         }
 
         //vista insert
         public ActionResult Create()
         {
-            return View();
+            if (Session["UserEmail"] != null)
+            {
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Login", "Login");
+            }
         }
 
         //insert
@@ -50,17 +64,31 @@ namespace ProyTE.UI.Controllers
         //select por id
         public ActionResult Details(int id)
         {
-            var historialm = hist.BuscarHistorial_Medida(id);
-            var mostrar = Mapper.Map<Models.TbHistorial_Medidas>(historialm);
-            return View(mostrar);
+            if (Session["UserEmail"] != null)
+            {
+                var historialm = hist.BuscarHistorial_Medida(id);
+                var mostrar = Mapper.Map<Models.TbHistorial_Medidas>(historialm);
+                return View(mostrar);
+            }
+            else
+            {
+                return RedirectToAction("Login", "Login");
+            }
         }
 
         //vista update
         public ActionResult Edit(int id)
         {
-            var historialm = hist.BuscarHistorial_Medida(id);
-            var mostrar = Mapper.Map<Models.TbHistorial_Medidas>(historialm);
-            return View(mostrar);
+            if (Session["UserEmail"] != null)
+            {
+                var historialm = hist.BuscarHistorial_Medida(id);
+                var mostrar = Mapper.Map<Models.TbHistorial_Medidas>(historialm);
+                return View(mostrar);
+            }
+            else
+            {
+                return RedirectToAction("Login", "Login");
+            }
         }
 
         //update
@@ -79,8 +107,15 @@ namespace ProyTE.UI.Controllers
         //delete
         public ActionResult Delete(int id)
         {
-            hist.EliminarHistorial_Medida(id);
-            return RedirectToAction("Index");
+            if (Session["UserEmail"] != null)
+            {
+                hist.EliminarHistorial_Medida(id);
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                return RedirectToAction("Login", "Login");
+            }
         }
     }
 }

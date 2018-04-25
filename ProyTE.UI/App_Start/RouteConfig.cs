@@ -19,6 +19,30 @@ namespace ProyTE.UI
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
             );
 
+            //Ruta Cambio Contrasenna
+            routes.MapRoute(
+                name: "CambioContrasenna",
+                url: "{controller}/{action}/{id}",
+                defaults: new
+                {
+                    controller = "Login",
+                    action = "CambioContrasenna",
+                    id = UrlParameter.Optional
+                }
+            );
+
+            //Ruta Login
+            routes.MapRoute(
+                name: "Login",
+                url: "{controller}/{action}/{id}",
+                defaults: new
+                {
+                    controller = "Login",
+                    action = "Login",
+                    id = UrlParameter.Optional
+                }
+            );
+
             //Ruta Usuario
             routes.MapRoute(
                 name: "Usuario",

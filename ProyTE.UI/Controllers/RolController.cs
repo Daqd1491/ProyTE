@@ -23,15 +23,29 @@ namespace ProyTE.UI.Controllers
         // GET: Rol
         public ActionResult Index()
         {
-            var lista = ro.ListarRoles();
-            var roles= Mapper.Map<List<Models.TbRoles>>(lista);
-            return View(roles);
+            if (Session["UserEmail"] != null)
+            {
+                var lista = ro.ListarRoles();
+                var roles = Mapper.Map<List<Models.TbRoles>>(lista);
+                return View(roles);
+            }
+            else
+            {
+                return RedirectToAction("Login", "Login");
+            }
         }
 
         //vista insert
         public ActionResult Create()
         {
-            return View();
+            if (Session["UserEmail"] != null)
+            {
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Login", "Login");
+            }
         }
 
         //insert
@@ -50,17 +64,31 @@ namespace ProyTE.UI.Controllers
         //select por id
         public ActionResult Details(int id)
         {
-            var rol = ro.BuscarRol(id);
-            var mostrar = Mapper.Map<Models.TbRoles>(rol);
-            return View(mostrar);
+            if (Session["UserEmail"] != null)
+            {
+                var rol = ro.BuscarRol(id);
+                var mostrar = Mapper.Map<Models.TbRoles>(rol);
+                return View(mostrar);
+            }
+            else
+            {
+                return RedirectToAction("Login", "Login");
+            }
         }
 
         //vista update
         public ActionResult Edit(int id)
         {
-            var rol = ro.BuscarRol(id);
-            var mostrar = Mapper.Map<Models.TbRoles>(rol);
-            return View(mostrar);
+            if (Session["UserEmail"] != null)
+            {
+                var rol = ro.BuscarRol(id);
+                var mostrar = Mapper.Map<Models.TbRoles>(rol);
+                return View(mostrar);
+            }
+            else
+            {
+                return RedirectToAction("Login", "Login");
+            }
         }
 
         //update
@@ -79,8 +107,15 @@ namespace ProyTE.UI.Controllers
         //delete
         public ActionResult Delete(int id)
         {
-            ro.EliminarRol(id);
-            return RedirectToAction("Index");
+            if (Session["UserEmail"] != null)
+            {
+                ro.EliminarRol(id);
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                return RedirectToAction("Login", "Login");
+            }
         }
     }
 }

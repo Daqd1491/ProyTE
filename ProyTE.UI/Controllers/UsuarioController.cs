@@ -14,24 +14,42 @@ namespace ProyTE.UI.Controllers
     public class UsuarioController : Controller
     {
         IUsuarios usua;
+        IRoles ro;
 
         public UsuarioController()
         {
             usua = new MUsuarios();
+            ro = new MRoles();
         }
 
         // GET: Usuario
         public ActionResult Index()
-        { 
-            var lista = usua.ListarUsuarios();
-            var usuarios = Mapper.Map<List<Models.TbUsuarios>>(lista);
-            return View(usuarios);
+        {
+            if (Session["UserEmail"] != null)
+            {
+                var lista = usua.ListarUsuarios();
+                var usuarios = Mapper.Map<List<Models.TbUsuarios>>(lista);
+                return View(usuarios);
+            }
+            else
+            {
+                return RedirectToAction("Login", "Login");
+            }
         }
 
         //vista insert
         public ActionResult Create()
         {
-            return View();
+            if (Session["UserEmail"] != null)
+            {
+                var roles = ro.ListarRoles();
+                ViewBag.ddlRoles = new SelectList(roles, "Id_Rol", "Nombre");
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Login", "Login");
+            }
         }
 
         //insert
@@ -40,6 +58,9 @@ namespace ProyTE.UI.Controllers
         {
             if (ModelState.IsValid)
             {
+
+                usuario.Id_Rol = Convert.ToInt32(Request.Form["ddlRoles"]);
+
                 var insertar = Mapper.Map<DATA.TbUsuarios>(usuario);
                 usua.InsertarUsuario(insertar);
                 return RedirectToAction("Index");
@@ -50,17 +71,31 @@ namespace ProyTE.UI.Controllers
         //select por id
         public ActionResult Details(int id)
         {
-            var usuario = usua.BuscarUsuario(id);
-            var mostrar = Mapper.Map<Models.TbUsuarios>(usuario);
-            return View(mostrar);
+            if (Session["UserEmail"] != null)
+            {
+                var usuario = usua.BuscarUsuario(id);
+                var mostrar = Mapper.Map<Models.TbUsuarios>(usuario);
+                return View(mostrar);
+            }
+            else
+            {
+                return RedirectToAction("Login", "Login");
+            }
         }
 
         //vista update
         public ActionResult Edit(int id)
         {
-            var usuario = usua.BuscarUsuario(id);
-            var mostrar = Mapper.Map<Models.TbUsuarios>(usuario);
-            return View(mostrar);
+            if (Session["UserEmail"] != null)
+            {
+                var usuario = usua.BuscarUsuario(id);
+                var mostrar = Mapper.Map<Models.TbUsuarios>(usuario);
+                return View(mostrar);
+            }
+            else
+            {
+                return RedirectToAction("Login", "Login");
+            }
         }
 
         //update
@@ -79,8 +114,15 @@ namespace ProyTE.UI.Controllers
         //delete
         public ActionResult Delete(int id)
         {
-            usua.EliminarUsuario(id);
-            return RedirectToAction("Index");
+            if (Session["UserEmail"] != null)
+            {
+                usua.EliminarUsuario(id);
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                return RedirectToAction("Login", "Login");
+            }
         }
          
     }

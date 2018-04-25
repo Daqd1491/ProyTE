@@ -60,6 +60,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>BD.settings</DependentUpon>
     </Compile>
+    <Compile Include="Interfaces\ICuenta.cs" />
     <Compile Include="Interfaces\ICategorias.cs" />
     <Compile Include="Interfaces\IAlquileres.cs" />
     <Compile Include="Interfaces\IAlquiler_Producto.cs" />
@@ -77,6 +78,7 @@
     <Compile Include="Metodos\MAlquiler_Producto.cs" />
     <Compile Include="Metodos\MBase.cs" />
     <Compile Include="Metodos\MCategorias.cs" />
+    <Compile Include="Metodos\MCuenta.cs" />
     <Compile Include="Metodos\MHistorial_Medidas.cs" />
     <Compile Include="Metodos\MPermisos.cs" />
     <Compile Include="Metodos\MPrendas.cs" />

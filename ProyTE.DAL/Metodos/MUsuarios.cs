@@ -14,27 +14,41 @@ namespace ProyTE.DAL.Metodos
     {
         public void ActualizarUsuario(TbUsuarios usuario)
         {
+            _db = _conexion.Open();
             _db.Update(usuario);
+            _db.Close();
         }
 
         public TbUsuarios BuscarUsuario(int idUsuario)
         {
-            return _db.Select<TbUsuarios>(x => x.Id_Usuario == idUsuario).FirstOrDefault();
+            _db = _conexion.Open();
+            var select = _db.Select<TbUsuarios>(x => x.Id_Usuario == idUsuario).FirstOrDefault();
+            _db.Close();
+            return select;
         }
 
         public void EliminarUsuario(int idUsuario)
         {
+            _db = _conexion.Open();
             _db.Delete<TbUsuarios>(x => x.Id_Usuario == idUsuario);
+            _db.Close();
+
         }
 
         public void InsertarUsuario(TbUsuarios usuario)
         {
+            _db = _conexion.Open();
             _db.Insert(usuario);
+            _db.Close();
+
         }
 
         public List<TbUsuarios> ListarUsuarios()
         {
-            return _db.Select<TbUsuarios>();
+            _db = _conexion.Open();
+            var select = _db.Select<TbUsuarios>();
+            _db.Close();
+            return select;
         }
     }
 }

@@ -22,15 +22,29 @@ namespace ProyTE.UI.Controllers
         // GET: Alquiler
         public ActionResult Index()
         {
-            var lista = alq.ListarAlquileres();
-            var alquileres = Mapper.Map<List<Models.TbAlquileres>>(lista);
-            return View(alquileres);
+            if (Session["UserEmail"] != null)
+            {
+                var lista = alq.ListarAlquileres();
+                var alquileres = Mapper.Map<List<Models.TbAlquileres>>(lista);
+                return View(alquileres);
+            }
+            else
+            {
+                return RedirectToAction("Login", "Login");
+            }
         }
 
         //vista insert
         public ActionResult Create()
         {
-            return View();
+            if (Session["UserEmail"] != null)
+            {
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Login", "Login");
+            }
         }
 
         //insert
@@ -49,17 +63,31 @@ namespace ProyTE.UI.Controllers
         //select por id
         public ActionResult Details(int id)
         {
-            var alquiler = alq.BuscarAlquiler(id);
-            var mostrar = Mapper.Map<Models.TbAlquileres>(alquiler);
-            return View(mostrar);
+            if (Session["UserEmail"] != null)
+            {
+                var alquiler = alq.BuscarAlquiler(id);
+                var mostrar = Mapper.Map<Models.TbAlquileres>(alquiler);
+                return View(mostrar);
+            }
+            else
+            {
+                return RedirectToAction("Login", "Login");
+            }
         }
 
         //vista update
         public ActionResult Edit(int id)
         {
-            var alquiler = alq.BuscarAlquiler(id);
-            var mostrar = Mapper.Map<Models.TbAlquileres>(alquiler);
-            return View(mostrar);
+            if (Session["UserEmail"] != null)
+            {
+                var alquiler = alq.BuscarAlquiler(id);
+                var mostrar = Mapper.Map<Models.TbAlquileres>(alquiler);
+                return View(mostrar);
+            }
+            else
+            {
+                return RedirectToAction("Login", "Login");
+            }
         }
 
         //update
@@ -78,8 +106,15 @@ namespace ProyTE.UI.Controllers
         //delete
         public ActionResult Delete(int id)
         {
-            alq.EliminarAlquiler(id);
-            return RedirectToAction("Index");
+            if (Session["UserEmail"] != null)
+            {
+                alq.EliminarAlquiler(id);
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                return RedirectToAction("Login", "Login");
+            }
         }
     }
 }

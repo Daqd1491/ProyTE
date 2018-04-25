@@ -23,15 +23,29 @@ namespace ProyTE.UI.Controllers
         // GET: Producto
         public ActionResult Index()
         {
-            var lista = prod.ListarProductos();
-            var productos = Mapper.Map<List<Models.TbProductos>>(lista);
-            return View(productos);
+            if (Session["UserEmail"] != null)
+            {
+                var lista = prod.ListarProductos();
+                var productos = Mapper.Map<List<Models.TbProductos>>(lista);
+                return View(productos);
+            }
+            else
+            {
+                return RedirectToAction("Login", "Login");
+            }
         }
 
         //vista insert
         public ActionResult Create()
         {
-            return View();
+            if (Session["UserEmail"] != null)
+            {
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Login", "Login");
+            }
         }
 
         //insert
@@ -50,17 +64,31 @@ namespace ProyTE.UI.Controllers
         //select por id
         public ActionResult Details(int id)
         {
-            var producto = prod.BuscarProducto(id);
-            var mostrar = Mapper.Map<Models.TbProductos>(producto);
-            return View(mostrar);
+            if (Session["UserEmail"] != null)
+            {
+                var producto = prod.BuscarProducto(id);
+                var mostrar = Mapper.Map<Models.TbProductos>(producto);
+                return View(mostrar);
+            }
+            else
+            {
+                return RedirectToAction("Login", "Login");
+            }
         }
 
         //vista update
         public ActionResult Edit(int id)
         {
-            var producto = prod.BuscarProducto(id);
-            var mostrar = Mapper.Map<Models.TbProductos>(producto);
-            return View(mostrar);
+            if (Session["UserEmail"] != null)
+            {
+                var producto = prod.BuscarProducto(id);
+                var mostrar = Mapper.Map<Models.TbProductos>(producto);
+                return View(mostrar);
+            }
+            else
+            {
+                return RedirectToAction("Login", "Login");
+            }
         }
 
         //update
@@ -79,8 +107,15 @@ namespace ProyTE.UI.Controllers
         //delete
         public ActionResult Delete(int id)
         {
-            prod.EliminarProducto(id);
-            return RedirectToAction("Index");
+            if (Session["UserEmail"] != null)
+            {
+                prod.EliminarProducto(id);
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                return RedirectToAction("Login", "Login");
+            }
         }
     }
 }
